@@ -303,6 +303,8 @@ class TautomerEnumerator(object):
                                 log.debug('Previous tautomer produced again: %s' % smiles)
                         except ValueError:
                             log.debug('ValueError Applying rule: %s', transform.name)
+                        except RuntimeError as e:
+                            log.warning('RuntimeError Applying rule: %s, error %s', transform.name, str(e))
                 done.add(tsmiles)
             if len(tautomers) == len(done):
                 break
